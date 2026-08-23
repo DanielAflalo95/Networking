@@ -26,73 +26,73 @@ Router Configuration
 
 I started with R1 by entering Privileged EXEC Mode and then Global Configuration Mode:
 
-enable
-configure terminal
+**enable**
+**configure terminal**
 
 I changed the router hostname:
 
-hostname R1
+**hostname R1**
 
 Then I entered the interface connected to SW1:
 
-interface GigabitEthernet0/0
+**interface GigabitEthernet0/0**
 
 I configured the router IP address:
 
-ip address 172.16.255.254 255.255.0.0
+**ip address 172.16.255.254 255.255.0.0**
 
 Since the network uses /16, the subnet mask is 255.255.0.0.
 
 Because this interface connects the router to another networking device, I manually configured its speed and duplex:
 
-speed 1000
-duplex full
+**speed 1000**
+**duplex full**
 
 I also added a description:
 
-description To SW1
+**description To SW1**
 
 Finally, I enabled the interface:
 
-no shutdown
+**no shutdown**
 
-This was important because router interfaces are administratively disabled by default. Until I used no shutdown, the router could not establish a connection with SW1.
+This was important because router interfaces are administratively disabled by default. Until I used **no shutdown**, the router could not establish a connection with SW1.
 
 Switch Configuration
 
 On both switches, I followed the same basic process:
 
-enable
-configure terminal
-hostname SW1
+**enable**
+**configure terminal**
+**hostname SW1**
 
 And on the second switch:
 
-hostname SW2
+**hostname SW2**
 
 For interfaces connecting networking devices, such as SW1 to R1, SW1 to SW2, and SW2 to SW1, I manually configured the speed and duplex.
 
 For example:
 
-interface GigabitEthernet0/1
-speed 1000
-duplex full
-description To R1
+**interface GigabitEthernet0/1**
+**speed 1000**
+**duplex full**
+**description To R1**
 
 On the connection between SW1 and SW2, I also added the correct interface descriptions:
 
-description To SW2
+**description To SW2**
 
 or:
 
-description To SW1
+**description To SW1**
 
 For interfaces connected to PCs, I added descriptions such as:
 
-description To PC1
-description To PC2
-description To PC3
-description To PC4
+**description To PC1**
+**description To PC2**
+**description To PC3**
+**description To PC4**
 
 Disabling Unused Interfaces
 
@@ -100,15 +100,15 @@ Another important part of the lab was shutting down interfaces that were not bei
 
 On SW1, FastEthernet0/3 through FastEthernet0/24 were unused, so I used:
 
-interface range FastEthernet0/3 - 24
-shutdown
+**interface range FastEthernet0/3 - 24**
+**shutdown**
 
 On SW2, GigabitEthernet0/2 was also unused, so I used:
 
-interface range FastEthernet0/3 - 24, GigabitEthernet0/2
-shutdown
+**interface range FastEthernet0/3 - 24, GigabitEthernet0/2**
+**shutdown**
 
-Using interface range made it possible to configure multiple interfaces at the same time instead of entering each one separately.
+Using **interface range** made it possible to configure multiple interfaces at the same time instead of entering each one separately.
 
 PC Configuration
 
@@ -131,11 +131,11 @@ The default gateway is the IP address of the router interface, which allows the 
 
 Testing Connectivity
 
-After finishing the configuration, I used the ping command between different PCs to make sure the network was working correctly.
+After finishing the configuration, I used the **ping** command between different PCs to make sure the network was working correctly.
 
 For example:
 
-ping 172.16.0.4
+**ping 172.16.0.4**
 
 The ping tests were successful, which confirmed that the devices were configured correctly and communication between the PCs was working.
 
@@ -145,6 +145,6 @@ In this lab, I practiced the basic Cisco IOS configuration process and became mo
 
 I also learned how to configure IP addresses, subnet masks, speed and duplex settings, interface descriptions, and default gateways.
 
-Another useful part of the exercise was learning how to use interface range to manage multiple switch ports and why unused interfaces should be disabled.
+Another useful part of the exercise was learning how to use **interface range** to manage multiple switch ports and why unused interfaces should be disabled.
 
-Finally, using ping helped me understand how to verify that the network configuration is actually working after completing the setup.
+Finally, using **ping** helped me understand how to verify that the network configuration is actually working after completing the setup.
